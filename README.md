@@ -25,18 +25,21 @@ Below are the Key features of the framework :
    This framework supports parallerl testing as well, So in case you want to execute test in less time use below command   
    command : pytest -n 3 --dist=loadscope
 
+###########################################################################################################################
+
 6- This Framework has three conftest files for below reason :
 
         A -Conftest.py (Present Under Root folder) - To enable testing on GRID using Zalenium and its integration with sauce labs to                perform cross browser testing on - Chrome, Firefox & Safari browser
 
         B- Conf_Zalenium.py (Present under GRID folder) - To enable testing on GRID using Zalenium and facilitate cross browser tesing              on Chrome & Firefox browser only
         
-        C -Conf_Normal.py (Present under GRID folder) - To facilitate testing on normal Host system,
-        
+        C -Conf_Normal.py (Present under GRID folder) - To facilitate testing on normal Host system
 
+ ###########################################################################################################################       
+ 
 In case you want to execute this framework on your local machine - I have listed the requirements with version under Requirements.txt file,
 Please execute command from your command line to install the libraries.
-command : pip install -r Requirements
+command : pip install -r Requirements, Additionally you can execute tox.ini file - it will create the virtual environment with all the required dependencies
 
 ###########################################################################################################
 Implemented markers for grouping of test @pytest.mark.smoke and same has been registered under ini file
