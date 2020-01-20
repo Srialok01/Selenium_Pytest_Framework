@@ -23,8 +23,16 @@ Below are the Key features of the framework :
     
 5- Parallel testing supported :
    This framework supports parallerl testing as well, So in case you want to execute test in less time use below command   
-   command : py.test -n 3 --dist=loadscope
+   command : pytest -n 3 --dist=loadscope
 
+6- This Framework has three conftest files for below reason :
+
+        A -Conftest.py (Present Under Root folder) - To enable testing on GRID using Zalenium and its integration with sauce labs to                perform cross browser testing on - Chrome, Firefox & Safari browser
+
+        B- Conf_Zalenium.py (Present under GRID folder) - To enable testing on GRID using Zalenium and facilitate cross browser tesing              on Chrome & Firefox browser only
+        
+        C -Conf_Normal.py (Present under GRID folder) - To facilitate testing on normal Host system,
+        
 
 In case you want to execute this framework on your local machine - I have listed the requirements with version under Requirements.txt file,
 Please execute command from your command line to install the libraries.
