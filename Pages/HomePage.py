@@ -1,5 +1,7 @@
+
 from selenium.webdriver.common.action_chains import ActionChains
 import time
+from selenium.webdriver.support.ui import WebDriverWait
 
 
 class HomePage():
@@ -11,16 +13,18 @@ class HomePage():
         self.Others_xpath = "//ul[@class='top-menu notmobile']//a[contains(text(),'Others')]"
 
     def Hover(self):
-        hoverElement = self.driver.find_element_by_xpath(self.Electronics_xpath)
-        time.sleep(2)
+        hoverElement = WebDriverWait(self.driver, 10).until(lambda x: x.find_element_by_xpath(self.Electronics_xpath))
         hover = ActionChains(self.driver)
         hover.move_to_element(hoverElement).perform()
-        time.sleep(2)
 
     def NavigateToCellPhone(self):
         self.Hover()
-        self.driver.find_element_by_xpath(self.Cell_Phones_xpath).click()
+        element = WebDriverWait(self.driver, 10).until(lambda x: x.find_element_by_xpath(self.Cell_Phones_xpath))
+        element.click()
+        time.sleep(2)
 
     def NavigateToOthers(self):
         self.Hover()
-        self.driver.find_element_by_xpath(self.Others_xpath).click()
+        element = WebDriverWait(self.driver, 10).until(lambda x: x.find_element_by_xpath(self.Others_xpath))
+        element.click()
+        time.sleep(2)

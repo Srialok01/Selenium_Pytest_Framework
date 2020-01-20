@@ -7,8 +7,8 @@ from selenium.webdriver.support.wait import WebDriverWait
 class OtherItems:
     def __init__(self, driver):
         self.driver = driver
-        self.driver.implicitly_wait(5)
-
+        # self.driver.implicitly_wait(5)
+        time.sleep(4)
         self.SoundSpeakers_Linktxt = "Portable Sound Speakers"
         self.Add_to_Cart_xpath = "//input[@id='add-to-cart-button-23']"
         self.shoppingCart_xpath = "//div[@class='header-links']//descendant::span[@class ='cart-label']"

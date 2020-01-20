@@ -1,7 +1,10 @@
 import time
-from Utils import Utils
-from selenium.webdriver.support.select import Select
 
+from selenium.webdriver.support.wait import WebDriverWait
+
+from Util import Utils
+from selenium.webdriver.support.select import Select
+from Util import Utils
 
 class Address():
     def __init__(self, driver):
@@ -37,17 +40,24 @@ class Address():
         self.driver.find_element_by_id(self.LastName_id).clear()
         self.driver.find_element_by_id(self.LastName_id).send_keys(Utils.dict_address.get('Last_Name'))
         time.sleep(2)
-        self.driver.execute_script("window.scrollTo(0, 300);")
-        self.driver.find_element_by_id(self.Email_id).clear()
-        self.driver.find_element_by_id(self.Email_id).send_keys(Utils.dict_address.get('Guest_Email'))
+        email = self.driver.find_element_by_id(self.Email_id)
+        email_element = email.location_once_scrolled_into_view
+        email.clear()
+        email.send_keys(Utils.dict_address.get('Guest_Email'))
         self.SelectCountry()
         self.driver.find_element_by_id(self.City_id).send_keys(Utils.dict_address.get('City'))
         self.driver.find_element_by_id(self.Address1_id).send_keys(Utils.dict_address.get('Address1'))
         self.driver.find_element_by_id(self.PostCode_id).send_keys(Utils.dict_address.get('PostCode'))
         self.driver.find_element_by_id(self.PhoneNo_id).send_keys(Utils.dict_address.get('PhoneNo'))
         time.sleep(2)
-        self.driver.find_element_by_xpath(self.BillingAddressContinueBTN_xpath).click()
-        self.driver.find_element_by_xpath(self.ShipAddressContinueBTN_xpath).click()
+        BTN =self.driver.find_element_by_xpath(self.BillingAddressContinueBTN_xpath)
+        BTN.location_once_scrolled_into_view
+        BTN.click()
+        element = WebDriverWait(self.driver, 10).until(lambda x: x.find_element_by_xpath(self.ShipAddressContinueBTN_xpath))
+        element.click()
+        # ShipAddressContinueBTN = self.driver.find_element_by_xpath(self.)
+        # BTN=ShipAddressContinueBTN.location_once_scrolled_into_view
+        # ShipAddressContinueBTN.click()
 
     def AddressInputExisting(self):
         self.driver.execute_script("window.scrollTo(0, 400);")

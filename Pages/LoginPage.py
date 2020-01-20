@@ -1,5 +1,5 @@
 import time
-from Utils import Utils
+from Util import Utils
 
 
 class LoginPage():
@@ -16,13 +16,13 @@ class LoginPage():
         email = self.driver.find_element_by_id(self.email_id)
         var = email.location_once_scrolled_into_view
         email.send_keys(Utils.Email)
-        # self.driver.find_element_by_id(self.email_id).send_keys(Utils.Email)
+        # self.driver.find_element_by_id(self.email_id).send_keys(Util.Email)
         self.driver.find_element_by_id(self.password_id).send_keys(Utils.Password)
         self.driver.find_element_by_xpath(self.loginbutton_xpath).click()
 
 
     def Checkout_as_Guest(self):
         CheckOutBTN = self.driver.find_element_by_xpath(self.checkOutAsGuestBTN_xpath)
-        var = CheckOutBTN.location_once_scrolled_into_view
+        #var = CheckOutBTN.location_once_scrolled_into_view
         CheckOutBTN.click()
     # self.driver.find_element_by_xpath(self.checkOutAsGuestBTN_xpath).click()

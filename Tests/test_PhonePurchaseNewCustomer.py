@@ -2,7 +2,7 @@ import allure
 import moment
 import pytest
 
-from Utils import Utils
+from Util import Utils
 
 from Pages.CartPage import CartPage
 from Pages.HomePage import HomePage
@@ -12,25 +12,33 @@ from Pages.LoginPage import LoginPage
 from Pages.AddressPage import Address
 from Pages.PaymentPage import Payment
 from Pages.OrderConfirmationPage import OrderConfirmation
-from Utils.SS import SS
+from Util.SS import SS
+from Util.Utils import URL
 
 
-#@pytest.mark.skip(" I don't want to execute this now")
-from Utils.Utils import URL
+# @pytest.mark.skip(" I don't want to execute this now")
+# from Util.Util import URL
 
-
-@pytest.mark.usefixtures("test_setup")
-
-
+@pytest.mark.usefixtures('test_setup_firefox')
 class Test_PhonePurchaseNewCustomer():
     global ss_path
     ss_path = '/PhonePurchaseNewCustomer/'
 
+    from selenium import webdriver
+
     def test_01HomePage(self):
         driver = self.driver
-        self.driver.get(URL)
-
+        driver.get(URL)
         homeObj = HomePage(driver)
+        title = driver.title
+        assert title == 'nopCommerce demo store', 'Page not loaded'
+        ss = SS(driver)
+        time = moment.now().strftime("%H-%M-%S_%d-%m-%Y")
+        testName = Utils.whoami()
+        ScreenShotName = testName + time
+        ss.screenshot(ss_path + ScreenShotName + ".png")
+        allure.attach(self.driver.get_screenshot_as_png(), name=ScreenShotName,
+                      attachment_type=allure.attachment_type.PNG)
         homeObj.NavigateToCellPhone()
         ss = SS(driver)
         time = moment.now().strftime("%H-%M-%S_%d-%m-%Y")
@@ -75,6 +83,7 @@ class Test_PhonePurchaseNewCustomer():
         ss.screenshot(ss_path + ScreenShotName + ".png")
         allure.attach(self.driver.get_screenshot_as_png(), name=ScreenShotName,
                       attachment_type=allure.attachment_type.PNG)
+
     def test_05Address(self):
         driver = self.driver
         addressObj = Address(driver)

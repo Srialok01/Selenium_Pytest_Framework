@@ -1,6 +1,6 @@
 import time
 from selenium.webdriver.support.select import Select
-from Utils import Utils
+from Util import Utils
 
 
 class Payment():
@@ -18,6 +18,7 @@ class Payment():
 
     def PaymentOptions(self):
         self.driver.execute_script("window.scrollTo(0, 300);")
+        time.sleep(2)
         self.driver.find_element_by_id(self.CreditCardRadioBtn_id).click()
         self.driver.find_element_by_xpath(self.PaymentContinueBTN_xpath).click()
         self.driver.find_element_by_id(self.CardHolderName_id).send_keys(Utils.CardHolderName)
